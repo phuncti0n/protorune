@@ -30,7 +30,7 @@ import { u128, u32, u64 } from "@magiceden-oss/runestone-lib/dist/src/integer";
 import { RuneId } from "@magiceden-oss/runestone-lib/dist/src/runeid";
 
 // const TEST_PROTOCOL_TAG = parseInt("0x112233445566778899aabbccddeeff10", 16);
-const TEST_PROTOCOL_TAG = BigInt("0x400000000000000000");
+const TEST_PROTOCOL_TAG = BigInt("0x4000");
 
 describe("protoburns", () => {
   it("initialProtoBurn: should index full protoburn, where edict target and pointer point to the protoburn", async () => {

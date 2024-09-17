@@ -32,10 +32,10 @@
  (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
  (import "env" "__host_len" (func $~lib/metashrew-as/assembly/indexer/index/__host_len (result i32)))
  (import "env" "__load_input" (func $~lib/metashrew-as/assembly/indexer/index/__load_input (param i32)))
- (import "env" "__log" (func $~lib/metashrew-as/assembly/utils/logging/__log (param i32)))
  (import "env" "__get_len" (func $~lib/metashrew-as/assembly/indexer/index/__get_len (param i32) (result i32)))
  (import "env" "__get" (func $~lib/metashrew-as/assembly/indexer/index/__get (param i32 i32)))
  (import "env" "__flush" (func $~lib/metashrew-as/assembly/indexer/index/__flush (param i32)))
+ (import "env" "__log" (func $~lib/metashrew-as/assembly/utils/logging/__log (param i32)))
  (global $~lib/metashrew-as/assembly/utils/hex/hexLookupTable i32 (i32.const 32))
  (global $~lib/rt/stub/startOffset (mut i32) (i32.const 0))
  (global $~lib/rt/stub/offset (mut i32) (i32.const 0))
@@ -10792,15 +10792,6 @@
   local.get $this
   i32.load
  )
- (func $~lib/metashrew-as/assembly/utils/logging/Console#log (param $this i32) (param $v i32)
-  local.get $v
-  i32.const 1
-  i32.const 2
-  global.set $~argumentsLength
-  i32.const 0
-  call $~lib/string/String.UTF8.encode@varargs
-  call $~lib/metashrew-as/assembly/utils/logging/__log
- )
  (func $~lib/metashrew-as/assembly/indexer/tables/IndexPointer#keyword (param $this i32) (param $key i32) (result i32)
   local.get $this
   local.get $key
@@ -11599,11 +11590,6 @@
       call $~lib/metashrew-as/assembly/indexer/tables/IndexPointer#set
       local.get $address
       if
-       global.get $~lib/metashrew-as/assembly/utils/logging/console
-       local.get $address
-       i32.const 0
-       call $~lib/string/String.UTF8.decode
-       call $~lib/metashrew-as/assembly/utils/logging/Console#log
        global.get $~lib/metashrew-spendables/assembly/tables/OUTPOINTS_FOR_ADDRESS
        local.get $address
        call $~lib/metashrew-as/assembly/indexer/tables/IndexPointer#select
@@ -34028,6 +34014,15 @@
   local.set $this
   local.get $this
  )
+ (func $~lib/metashrew-as/assembly/utils/logging/Console#log (param $this i32) (param $v i32)
+  local.get $v
+  i32.const 1
+  i32.const 2
+  global.set $~argumentsLength
+  i32.const 0
+  call $~lib/string/String.UTF8.encode@varargs
+  call $~lib/metashrew-as/assembly/utils/logging/__log
+ )
  (func $assembly/indexer/ProtoruneRuneId/ProtoruneRuneId.encode (param $ary i32) (result i32)
   (local $data i32)
   (local $result i32)
@@ -39389,6 +39384,11 @@
       call $~lib/metashrew-runes/assembly/indexer/Edict/Edict#get:amount
       call $~lib/metashrew-runes/assembly/utils/min<~lib/as-bignum/assembly/integer/u128/u128>
       local.set $toApply|34
+      global.get $~lib/metashrew-as/assembly/utils/logging/console
+      local.get $toApply|34
+      i32.const 10
+      call $~lib/as-bignum/assembly/integer/u128/u128#toString
+      call $~lib/metashrew-as/assembly/utils/logging/Console#log
       block $~lib/as-bignum/assembly/integer/u128/u128#isZero|inlined.13 (result i32)
        local.get $toApply|34
        local.set $this|35
@@ -43132,6 +43132,11 @@
       call $~lib/metashrew-runes/assembly/indexer/Edict/Edict#get:amount
       call $~lib/metashrew-runes/assembly/utils/min<~lib/as-bignum/assembly/integer/u128/u128>
       local.set $toApply|34
+      global.get $~lib/metashrew-as/assembly/utils/logging/console
+      local.get $toApply|34
+      i32.const 10
+      call $~lib/as-bignum/assembly/integer/u128/u128#toString
+      call $~lib/metashrew-as/assembly/utils/logging/Console#log
       block $~lib/as-bignum/assembly/integer/u128/u128#isZero|inlined.16 (result i32)
        local.get $toApply|34
        local.set $this|35
@@ -43874,6 +43879,11 @@
       call $~lib/metashrew-runes/assembly/indexer/Edict/Edict#get:amount
       call $~lib/metashrew-runes/assembly/utils/min<~lib/as-bignum/assembly/integer/u128/u128>
       local.set $toApply|34
+      global.get $~lib/metashrew-as/assembly/utils/logging/console
+      local.get $toApply|34
+      i32.const 10
+      call $~lib/as-bignum/assembly/integer/u128/u128#toString
+      call $~lib/metashrew-as/assembly/utils/logging/Console#log
       block $~lib/as-bignum/assembly/integer/u128/u128#isZero|inlined.19 (result i32)
        local.get $toApply|34
        local.set $this|35
@@ -44616,6 +44626,11 @@
       call $~lib/metashrew-runes/assembly/indexer/Edict/Edict#get:amount
       call $~lib/metashrew-runes/assembly/utils/min<~lib/as-bignum/assembly/integer/u128/u128>
       local.set $toApply|34
+      global.get $~lib/metashrew-as/assembly/utils/logging/console
+      local.get $toApply|34
+      i32.const 10
+      call $~lib/as-bignum/assembly/integer/u128/u128#toString
+      call $~lib/metashrew-as/assembly/utils/logging/Console#log
       block $~lib/as-bignum/assembly/integer/u128/u128#isZero|inlined.22 (result i32)
        local.get $toApply|34
        local.set $this|35
@@ -45358,6 +45373,11 @@
       call $~lib/metashrew-runes/assembly/indexer/Edict/Edict#get:amount
       call $~lib/metashrew-runes/assembly/utils/min<~lib/as-bignum/assembly/integer/u128/u128>
       local.set $toApply|34
+      global.get $~lib/metashrew-as/assembly/utils/logging/console
+      local.get $toApply|34
+      i32.const 10
+      call $~lib/as-bignum/assembly/integer/u128/u128#toString
+      call $~lib/metashrew-as/assembly/utils/logging/Console#log
       block $~lib/as-bignum/assembly/integer/u128/u128#isZero|inlined.25 (result i32)
        local.get $toApply|34
        local.set $this|35

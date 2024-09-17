@@ -63,7 +63,7 @@ export class Protorune<T extends MessageContext> extends RunesIndex {
     tx: RunesTransaction,
     txid: ArrayBuffer,
     height: u32,
-    i: u32,
+    i: u32
   ): RunestoneMessage {
     const baseRunestone = tx.runestone();
     const runestone = Protostone.from(baseRunestone);
@@ -75,7 +75,7 @@ export class Protorune<T extends MessageContext> extends RunesIndex {
     if (changetype<usize>(runestone) === 0)
       return changetype<RunestoneMessage>(0);
     const balancesByOutput = changetype<Map<u32, ProtoruneBalanceSheet>>(
-      baseRunestone.process(tx, txid, height, i),
+      baseRunestone.process(tx, txid, height, i)
     );
     const protostones = runestone.protostones(tx.outs.length + 1);
     const burns = protostones.burns();
@@ -90,7 +90,7 @@ export class Protorune<T extends MessageContext> extends RunesIndex {
         runestoneOutputIndex,
         runestone,
         edicts,
-        burns,
+        burns
       );
     }
     this.processProtostones(protostones.flat(), block, height, tx, txid, i);
@@ -103,7 +103,7 @@ export class Protorune<T extends MessageContext> extends RunesIndex {
     runestoneOutputIndex: i32,
     runestone: Protostone,
     edicts: Array<Edict>,
-    protoburns: Array<S>,
+    protoburns: Array<S>
   ): void {
     const runestoneBalanceSheet = new ProtoruneBalanceSheet();
     (balancesByOutput.has(runestoneOutputIndex)
@@ -164,7 +164,7 @@ export class Protorune<T extends MessageContext> extends RunesIndex {
       console.log(nameof(protoburns[i]));
       protoburns[i].process(
         burnSheets[i],
-        OutPoint.from(txid, protoburns[i].pointer).toArrayBuffer(),
+        OutPoint.from(txid, protoburns[i].pointer).toArrayBuffer()
       );
     }
   }
@@ -174,7 +174,7 @@ export class Protorune<T extends MessageContext> extends RunesIndex {
     height: u64,
     tx: RunesTransaction,
     txid: ArrayBuffer,
-    txindex: u32,
+    txindex: u32
   ): void {
     for (let i = 0; i < protostones.length; i++) {
       const protostone = protostones[i];
